@@ -1932,6 +1932,273 @@ class CopilotUI {
             }, 5000);
         }
     }
+
+    function getUserDisplayName(user) {
+    return `${user.firstName} ${user.lastName}`;
+}
+
+function applyDiscount(price, percent) {
+    return +(price * (1 - percent / 100)).toFixed(2);
+}
+
+function generateInvoiceId() {
+    return `INV-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+}
+
+function isPositiveInteger(value) {
+    return Number.isInteger(value) && value > 0;
+}
+
+function mergeSettings(defaults, overrides) {
+    return Object.assign({}, defaults, overrides);
+}
+
+function flattenArray(arr) {
+    return arr.reduce((acc, val) => acc.concat(val), []);
+}
+
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function getWeekday(dateStr) {
+    return new Date(dateStr).toLocaleDateString('en-US', { weekday: 'long' });
+}
+
+function formatPhoneNumber(number) {
+    return number.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+}
+
+function parseQueryParams(query) {
+    return Object.fromEntries(new URLSearchParams(query));
+}
+
+function mapValues(obj, fn) {
+    return Object.fromEntries(Object.entries(obj).map(([k, v]) => [k, fn(v)]));
+}
+
+function getRandomElement(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function normalizeText(text) {
+    return text.normalize('NFKC').toLowerCase().trim();
+}
+
+function getFirstDefined(...args) {
+    return args.find(x => x !== undefined && x !== null);
+}
+
+function getRange(min, max) {
+    return Array.from({ length: max - min + 1 }, (_, i) => i + min);
+}
+
+function reverseLookup(map, value) {
+    return Object.keys(map).find(k => map[k] === value);
+}
+
+function toSlug(text) {
+    return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+function isEmptyObject(obj) {
+    return Object.keys(obj).length === 0;
+}
+
+function isPalindrome(str) {
+    const s = str.replace(/\W/g, '').toLowerCase();
+    return s === s.split('').reverse().join('');
+}
+
+function getMonthName(index) {
+    return new Date(0, index).toLocaleString('en-US', { month: 'long' });
+}
+
+function isLeapYear(year) {
+    return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+}
+
+function daysInMonth(year, month) {
+    return new Date(year, month + 1, 0).getDate();
+}
+
+function extractDomain(url) {
+    try {
+        return new URL(url).hostname;
+    } catch {
+        return '';
+    }
+}
+
+function generateMatrix(rows, cols, value = 0) {
+    return Array.from({ length: rows }, () => Array(cols).fill(value));
+}
+
+function chunkArray(arr, size) {
+    const result = [];
+    for (let i = 0; i < arr.length; i += size) {
+        result.push(arr.slice(i, i + size));
+    }
+    return result;
+}
+
+function countOccurrences(arr) {
+    return arr.reduce((acc, val) => {
+        acc[val] = (acc[val] || 0) + 1;
+        return acc;
+    }, {});
+}
+
+function compactArray(arr) {
+    return arr.filter(Boolean);
+}
+
+function pick(obj, keys) {
+    return keys.reduce((acc, key) => {
+        if (key in obj) acc[key] = obj[key];
+        return acc;
+    }, {});
+}
+
+function omit(obj, keys) {
+    return Object.fromEntries(Object.entries(obj).filter(([k]) => !keys.includes(k)));
+}
+
+function encodeBase64(str) {
+    return btoa(unescape(encodeURIComponent(str)));
+}
+
+function decodeBase64(str) {
+    return decodeURIComponent(escape(atob(str)));
+}
+
+function isEven(n) {
+    return n % 2 === 0;
+}
+
+function isOdd(n) {
+    return n % 2 !== 0;
+}
+
+function zipArrays(a, b) {
+    return a.map((val, i) => [val, b[i]]);
+}
+
+function rotateArray(arr, count) {
+    return arr.slice(count).concat(arr.slice(0, count));
+}
+
+function xorEncrypt(text, key) {
+    return text.split('').map((c, i) => String.fromCharCode(c.charCodeAt(0) ^ key.charCodeAt(i % key.length))).join('');
+}
+
+function median(numbers) {
+    const sorted = [...numbers].sort((a, b) => a - b);
+    const mid = Math.floor(sorted.length / 2);
+    return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+}
+
+function mode(arr) {
+    const freq = {};
+    let maxFreq = 0;
+    let result = null;
+    for (const val of arr) {
+        freq[val] = (freq[val] || 0) + 1;
+        if (freq[val] > maxFreq) {
+            maxFreq = freq[val];
+            result = val;
+        }
+    }
+    return result;
+}
+
+function getRandomColor() {
+    return `#${Math.floor(Math.random()*16777215).toString(16).padStart(6, '0')}`;
+}
+
+function average(arr) {
+    return arr.reduce((a, b) => a + b, 0) / arr.length;
+}
+
+function wrapText(text, width) {
+    const regex = new RegExp(`(.{1,${width}})(\\s|$)`, 'g');
+    return text.match(regex).join('\n');
+}
+
+function getTimeDiff(t1, t2) {
+    return Math.abs(new Date(t1) - new Date(t2));
+}
+
+function sumMatrix(matrix) {
+    return matrix.flat().reduce((a, b) => a + b, 0);
+}
+
+function validateNumber(input) {
+    return !isNaN(input) && isFinite(input);
+}
+
+function limitString(str, maxLength) {
+    return str.length > maxLength ? str.slice(0, maxLength) + '…' : str;
+}
+
+function parseCSV(str) {
+    return str.split('\n').map(line => line.split(','));
+}
+
+function serializeToCSV(data) {
+    return data.map(row => row.join(',')).join('\n');
+}
+
+function convertToCamelCase(str) {
+    return str.replace(/[-_](.)/g, (_, c) => c.toUpperCase());
+}
+
+function convertToSnakeCase(str) {
+    return str.replace(/[A-Z]/g, c => `_${c.toLowerCase()}`);
+}
+
+function convertToKebabCase(str) {
+    return str.replace(/[A-Z]/g, c => `-${c.toLowerCase()}`);
+}
+
+function sortByKey(arr, key) {
+    return [...arr].sort((a, b) => (a[key] > b[key] ? 1 : -1));
+}
+
+function padNumber(num, size = 2) {
+    return num.toString().padStart(size, '0');
+}
+
+function getUTCDate() {
+    return new Date().toISOString().split('T')[0];
+}
+
+function mergeSortedArrays(a, b) {
+    const result = [];
+    let i = 0, j = 0;
+    while (i < a.length && j < b.length) {
+        result.push(a[i] < b[j] ? a[i++] : b[j++]);
+    }
+    return result.concat(a.slice(i), b.slice(j));
+}
+
+function binarySearch(arr, target) {
+    let low = 0, high = arr.length - 1;
+    while (low <= high) {
+        const mid = Math.floor((low + high) / 2);
+        if (arr[mid] === target) return mid;
+        if (arr[mid] < target) low = mid + 1;
+        else high = mid - 1;
+    }
+    return -1;
+}
+
+function generateUUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+        const r = Math.random() * 16 | 0;
+        const v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
 }
 
 // Export for use in other modules
